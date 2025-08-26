@@ -1,14 +1,14 @@
 # ESP LCD Touch FT6x36 Controller
 
-[![Component Registry](https://components.espressif.com/components/espressif/esp_lcd_touch_ft6x36/badge.svg)](https://components.espressif.com/components/cfscn/esp_lcd_touch_ft6x36)
+[![Component Registry](https://components.espressif.com/components/cfscn/esp_lcd_touch_ft6x36/badge.svg)](https://components.espressif.com/components/cfscn/esp_lcd_touch_ft6x36)
 
 This repository is forked from espressif/esp_lcd_touch_ft5x06
 
 Implementation of the FT6x36 touch controller with esp_lcd_touch component.
 
-| Touch controller | Communication interface | Component name | Link to datasheet |
-| :--------------: | :---------------------: | :------------: | :---------------: |
-| FT6x36           | I2C                     | esp_lcd_touch_ft6x36 | [PDF](https://www.buydisplay.com/download/ic/FT6236-FT6336-FT6436L-FT6436_Datasheet.pdf) |
+| Touch controller | Communication interface |    Component name    |                                    Link to datasheet                                     |
+| :--------------: | :---------------------: | :------------------: | :--------------------------------------------------------------------------------------: |
+|      FT6x36      |           I2C           | esp_lcd_touch_ft6x36 | [PDF](https://www.buydisplay.com/download/ic/FT6236-FT6336-FT6436L-FT6436_Datasheet.pdf) |
 
 [^1]: **NOTE:** This controller should work via I2C or SPI communication interface. But it was tested on HW only via I2C communication interface.
 
@@ -17,7 +17,7 @@ Implementation of the FT6x36 touch controller with esp_lcd_touch component.
 Packages from this repository are uploaded to [Espressif's component service](https://components.espressif.com/).
 You can add them to your project via `idf.py add-dependancy`, e.g.
 ```
-    idf.py add-dependency esp_lcd_touch_ft6x36==1.0.0
+    idf.py add-dependency esp_lcd_touch_ft6x36==1.0.9
 ```
 
 Alternatively, you can create `idf_component.yml`. More is in [Espressif's documentation](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/tools/idf-component-manager.html).
@@ -26,8 +26,9 @@ Alternatively, you can create `idf_component.yml`. More is in [Espressif's docum
 
 I2C initialization of the touch component.
 
-```
-    esp_lcd_panel_io_i2c_config_t io_config = ESP_LCD_TOUCH_IO_I2C_FT6x36_CONFIG();
+```c
+    CLK_SPEED = 400 * 1000;
+    esp_lcd_panel_io_i2c_config_t io_config = ESP_LCD_TOUCH_IO_I2C_FT6x36_CONFIG(CLK_SPEED);
 
     esp_lcd_touch_config_t tp_cfg = {
         .x_max = CONFIG_LCD_HRES,
