@@ -42,17 +42,18 @@ extern "C"
  * @brief Touch IO configuration structure
  *
  */
-#define ESP_LCD_TOUCH_IO_I2C_FT6x36_CONFIG()             \
+#define ESP_LCD_TOUCH_IO_I2C_FT6x36_CONFIG(CLK_SPEED)    \
     {                                                    \
         .dev_addr = ESP_LCD_TOUCH_IO_I2C_FT6x36_ADDRESS, \
         .control_phase_bytes = 1,                        \
         .dc_bit_offset = 0,                              \
         .lcd_cmd_bits = 8,                               \
-        .flags =                                         \
-        {                                                \
-            .disable_control_phase = 1,                  \
-        }                                                \
+        .scl_speed_hz = CLK_SPEED,
+    .flags =
+        {
+            .disable_control_phase = 1,
     }
+}
 
 #ifdef __cplusplus
 }
